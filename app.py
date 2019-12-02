@@ -72,7 +72,7 @@ def callback():
         if not isinstance(event.message, TextMessage):
             continue
 
-        if (event.message.text == "Hello")
+        if event.message.text == "Hello"
             event.reply_message(event.reply_token, TextMessage(text = "os fxxk you"))
         
         else
