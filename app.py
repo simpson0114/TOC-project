@@ -73,7 +73,7 @@ def callback():
             continue
 
         if event.message.text == "Hello":
-            event.reply_message(event.reply_token, TextMessage(text = "os fxxk you"))
+            line_bot_api.reply_message(event.reply_token, TextMessage(text = "os fxxk you"))
         
         else:
             line_bot_api.reply_message(
