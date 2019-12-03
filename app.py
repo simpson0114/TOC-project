@@ -9,9 +9,11 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 from fsm import TocMachine
 from utils import send_text_message
+from random import choice
 
 load_dotenv()
 
+food = ['鴨肉飯', '乾麵', '港式燒臘', '鍋燒意麵', '炒飯', '拉麵', '餛飩麵']
 
 machine = TocMachine(
     states=["user", "state1", "state2"],
@@ -72,8 +74,8 @@ def callback():
         if not isinstance(event.message, TextMessage):
             continue
 
-        if event.message.text == "Hello":
-            line_bot_api.reply_message(event.reply_token, TextMessage(text = "os fxxk you"))
+        if event.message.text == "吃什麼":
+            line_bot_api.reply_message(event.reply_token, TextMessage(text = choice(food)))
         
         else:
             line_bot_api.reply_message(
