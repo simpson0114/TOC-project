@@ -2,6 +2,7 @@ from transitions.extensions import GraphMachine
 
 from utils import send_text_message
 
+food = ['鴨肉飯', '乾麵', '港式燒臘', '鍋燒意麵', '炒飯', '拉麵', '餛飩麵']
 
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
@@ -9,7 +10,7 @@ class TocMachine(GraphMachine):
 
     def is_going_to_state1(self, event):
         text = event.message.text
-        return text.lower() == "go to state1"
+        return text.lower() == "吃什麼"
 
     def is_going_to_state2(self, event):
         text = event.message.text
@@ -19,7 +20,7 @@ class TocMachine(GraphMachine):
         print("I'm entering state1")
 
         reply_token = event.reply_token
-        send_text_message(reply_token, "Trigger state1")
+        send_text_message(reply_token, choice(food))
         self.go_back()
 
     def on_exit_state1(self):
