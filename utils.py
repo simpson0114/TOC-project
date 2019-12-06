@@ -17,7 +17,7 @@ def send_image_url(reply_token, image_url):
 	message = ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
     line_bot_api.reply_message(reply_token, message)
 
-"""
+'''
 def send_button_message(id, text, buttons):
     pass
-"""
+'''
