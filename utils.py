@@ -10,8 +10,12 @@ channel_access_token = os.getenv("LINE_CHANNEL_ACCESS_TOKEN", None)
 def send_text_message(reply_token, text):
     line_bot_api = LineBotApi(channel_access_token)
     line_bot_api.reply_message(reply_token, TextSendMessage(text=text))
-
     return "OK"
+
+def send_image_url(reply_token, img_url):
+    line_bot_api = LineBotApi(channel_access_token)
+    line_bot_api.reply_image(reply_token, ImageSendMessage(original_content_url=img_url));
+    return "image sent"
 
 """
 def send_image_url(id, img_url):

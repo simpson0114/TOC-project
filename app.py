@@ -31,6 +31,7 @@ machine = TocMachine(
             "conditions": "is_going_to_state2",
         },
         {"trigger": "go_back", "source": ["state1", "state2"], "dest": "user"},
+        {"trigger": "again", "source": "state1", "dest": "state1"},
     ],
     initial="user",
     auto_transitions=False,
@@ -111,7 +112,7 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
         if response == False:
-            send_text_message(event.reply_token, "請輸入「吃什麼」")
+            send_text_message(event.reply_token, "請輸入「吃什麼」決定下一餐")
 
     return "OK"
 
