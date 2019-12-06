@@ -9,6 +9,7 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 from fsm import TocMachine
 from utils import send_text_message
+from utils import send_image_url
 from random import choice
 
 load_dotenv()
