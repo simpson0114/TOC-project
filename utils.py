@@ -12,11 +12,11 @@ def send_text_message(reply_token, text):
     line_bot_api.reply_message(reply_token, TextSendMessage(text=text))
     return "OK"
 
-def send_image_url(reply_token, img_url):
+def send_image_url(reply_token):
 	line_bot_api = LineBotApi(channel_access_token)
 	message = ImageSendMessage(
-	    original_content_url=img_url,
-	    preview_image_url=img_url
+	    original_content_url='https://images.zi.org.tw/ireneslife/2018/08/23222608/1535034368-95cf834c4d3687e1347ed20f3cdb7cab.jpg',
+	    preview_image_url='https://images.zi.org.tw/ireneslife/2018/08/23222608/1535034368-95cf834c4d3687e1347ed20f3cdb7cab.jpg'
 	)
     line_bot_api.reply_message(reply_token, message)
     return "image sent"
