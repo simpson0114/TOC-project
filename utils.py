@@ -14,11 +14,7 @@ def send_text_message(reply_token, text):
 
 def send_image_url(reply_token, image_url):
 	line_bot_api = LineBotApi(channel_access_token)
-	message = ImageSendMessage(
-	    original_content_url=image_url,
-	    preview_image_url=image_url
-	)
-    line_bot_api.reply_message(reply_token, message)
+    line_bot_api.reply_message(reply_token, ImageSendMessage(original_content_url=image_url, preview_image_url=image_url))
     return "image sent"
 """
 def send_button_message(id, text, buttons):
