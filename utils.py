@@ -18,7 +18,7 @@ def send_image_url(reply_token, img_url):
 	    preview_image_url=img_url
 	)
     line_bot_api = LineBotApi(channel_access_token)
-    line_bot_api.reply_image(reply_token, message)
+    line_bot_api.reply_message(reply_token, message)
     return "image sent"
 
 """
