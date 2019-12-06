@@ -1,6 +1,6 @@
 from transitions.extensions import GraphMachine
 
-from utils import send_text_message, send_image_url
+from utils import send_text_message
 from random import choice
 
 food = ['鴨肉飯', '乾麵', '港式燒臘', '鍋燒意麵', '炒飯', '拉麵', '餛飩麵']
@@ -31,7 +31,7 @@ class TocMachine(GraphMachine):
         print("I'm entering state2")
 
         reply_token = event.reply_token
-        send_image_url(reply_token)
+        send_text_message(reply_token, choice(food))
         self.go_back()
 
     def on_exit_state2(self):
