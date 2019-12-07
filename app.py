@@ -118,7 +118,7 @@ def webhook_handler():
                 add_food_message(event.message.text[4:])
                 send_text_message(event.reply_token, "已新增")
             else:
-            send_text_message(event.reply_token, "請輸入「吃什麼」決定下一餐")
+                send_text_message(event.reply_token, "請輸入「吃什麼」決定下一餐")
 
     return "OK"
 
