@@ -114,8 +114,8 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
         if response == False:
-            if(event.message.text[0..3] == "加食物；"):
-                add_food_message(event.message.text[4..-1])
+            if(event.message.text[0:3] == "加食物；"):
+                add_food_message(event.message.text[4:])
                 send_text_message(event.reply_token, "已新增")
             else:
             send_text_message(event.reply_token, "請輸入「吃什麼」決定下一餐")
