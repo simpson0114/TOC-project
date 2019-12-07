@@ -12,7 +12,7 @@ class TocMachine(GraphMachine):
 
     def is_going_to_state1(self, event):
         text = event.message.text
-        return text[0..5] == "抽食物"
+        return text.lower() == "food"
 
     def is_going_to_state2(self, event):
         text = event.message.text
@@ -21,7 +21,7 @@ class TocMachine(GraphMachine):
     def on_enter_state1(self, event):
         print("I'm entering state1")
         reply_token = event.reply_token
-        send_food_message(reply_token, choice(food))
+        send_food_message(reply_token)
         self.go_back()
 
     def on_exit_state1(self):

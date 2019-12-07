@@ -18,7 +18,7 @@ def send_image_url(reply_token, image_url):
 	message = ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
 	line_bot_api.reply_message(reply_token, message)
 	
-def send_food_message(reply_token, text):
+def send_food_message(reply_token):
     line_bot_api = LineBotApi(channel_access_token)
     line_bot_api.reply_message(reply_token, TextSendMessage(text=choice(food)))
     return "OK"
