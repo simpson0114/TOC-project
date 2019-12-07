@@ -23,6 +23,9 @@ def send_food_message(reply_token):
     line_bot_api.reply_message(reply_token, TextSendMessage(text=choice(food)))
     return "OK"
 
+def add_food_message(recieved_message):
+	food.append(recieved_message)
+
 '''
 def send_button_message(id, text, buttons):
     pass

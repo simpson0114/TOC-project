@@ -1,7 +1,6 @@
 from transitions.extensions import GraphMachine
 
 from utils import send_text_message, send_image_url, send_food_message
-from random import choice
 
 
 photo = ['https://images.zi.org.tw/ireneslife/2018/08/23222608/1535034368-95cf834c4d3687e1347ed20f3cdb7cab.jpg',]

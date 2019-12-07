@@ -8,7 +8,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 
 from fsm import TocMachine
-from utils import send_text_message
+from utils import send_text_message, add_food_message
 from random import choice
 
 load_dotenv()
@@ -114,6 +114,10 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
         if response == False:
+            if(event.message.text[0..4] == "加食物；"):
+                add_food_message(event.message.text[5..-1])
+                send_text_message(event.reply_token, "已新增")
+            else:
             send_text_message(event.reply_token, "請輸入「吃什麼」決定下一餐")
 
     return "OK"
