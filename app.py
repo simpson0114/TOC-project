@@ -16,7 +16,7 @@ load_dotenv()
 food = ['鴨肉飯', '乾麵', '港式燒臘', '鍋燒意麵', '炒飯', '拉麵', '餛飩麵']
 
 machine = TocMachine(
-    states=["user", "state1", "state2"],
+    states=["user", "state1", "state2", "add_food"],
     transitions=[
         {
             "trigger": "advance",
@@ -29,6 +29,18 @@ machine = TocMachine(
             "source": "user",
             "dest": "state2",
             "conditions": "is_going_to_state2",
+        },
+        {
+            "trigger": "advance",
+            "source": "user",
+            "dest": "add_food",
+            "conditions": "is_adding_food",
+        },
+        {
+            "trigger": "advance",
+            "source": "add_food",
+            "dest": "user",
+            "conditions": "not_empty",
         },
         {"trigger": "go_back", "source": ["state1", "state2"], "dest": "user"},
     ],
@@ -114,11 +126,7 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
         if response == False:
-            if(event.message.text[0:3] == "加食物；"):
-                add_food_message(event.message.text[4:])
-                send_text_message(event.reply_token, "已新增")
-            else:
-                send_text_message(event.reply_token, "請輸入「吃什麼」決定下一餐")
+            send_text_message(event.reply_token, "請輸入「吃什麼」決定下一餐")
 
     return "OK"
 
