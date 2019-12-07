@@ -24,7 +24,10 @@ def send_food_message(reply_token):
     return "OK"
 
 def send_allfood_message(reply_token):
+	text = ""
     line_bot_api = LineBotApi(channel_access_token)
+    for x in range(len(food)): 
+    	text += food[x] 
     line_bot_api.reply_message(reply_token, TextSendMessage(text=food[0:-1]))
     return "OK"
 
