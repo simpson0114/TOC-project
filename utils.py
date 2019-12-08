@@ -34,6 +34,11 @@ def send_allfood_message(reply_token):
 def add_food_message(recieved_message):
     food.append(recieved_message)
 
+def delete_food_message(recieved_message):
+	food.remove(recieved_message)
+
+def is_food(recieved_message):
+	return recieved_message in food
 '''
 def send_button_message(id, text, buttons):
     pass

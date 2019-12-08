@@ -42,6 +42,18 @@ machine = TocMachine(
             "dest": "user",
             "conditions": "not_empty",
         },
+        {
+            "trigger": "advance",
+            "source": "user",
+            "dest": "delete_food",
+            "conditions": "is_deleting_food",
+        },
+        {
+            "trigger": "advance",
+            "source": "delete_food",
+            "dest": "user",
+            "conditions": "is_food_in_list",
+        },
         {"trigger": "go_back", "source": ["state1", "state2"], "dest": "user"},
     ],
     initial="user",
