@@ -43,6 +43,12 @@ class TocMachine(GraphMachine):
     def on_exit_state2(self):
         print("Leaving state2")
         
+    def on_enter_add_food(self, event):
+        print("I'm adding food")
+        reply_token = event.reply_token
+        send_text_message(reply_token, "請輸入要加入的食物")
+        
+
     def on_exit_add_food(self, event):
         print("Leaving add_food")
         reply_token = event.reply_token
