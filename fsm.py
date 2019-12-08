@@ -15,7 +15,7 @@ class TocMachine(GraphMachine):
 
     def is_going_to_state2(self, event):
         text = event.message.text
-        return text.lower() == "go to state2"
+        return text.lower() == "有什麼"
 
     def is_adding_food(self,event):
         text = event.message.text
