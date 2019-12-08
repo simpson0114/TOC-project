@@ -28,7 +28,7 @@ def send_allfood_message(reply_token):
     line_bot_api = LineBotApi(channel_access_token)
     for x in range(len(food)): 
         text += food[x] 
-    line_bot_api.reply_message(reply_token, TextSendMessage(text=", ".join(food))
+    line_bot_api.reply_message(reply_token, TextSendMessage(text=", ".join(food)))
     return "OK"
 
 def add_food_message(recieved_message):
