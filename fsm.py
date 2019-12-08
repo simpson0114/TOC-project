@@ -27,7 +27,7 @@ class TocMachine(GraphMachine):
 
     def not_empty(self, event):
         text = event.message.text
-        return (text.lower() != "" and !is_food(text.lower()))
+        return (text.lower() != "" and not(is_food(text.lower())))
 
     def is_food_in_list(self, event):
         text = event.message.text
