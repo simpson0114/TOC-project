@@ -10,9 +10,6 @@ channel_access_token = os.getenv("LINE_CHANNEL_ACCESS_TOKEN", None)
 food = ['鴨肉飯', '乾麵', '港式燒臘', '鍋燒意麵', '炒飯', '拉麵', '餛飩麵']
 photo = ['https://images.zi.org.tw/ireneslife/2018/08/23222608/1535034368-95cf834c4d3687e1347ed20f3cdb7cab.jpg',
 ]
-res = requests.get('https://www.foodpanda.com.tw/city/tainan-city')
-
-soup = BeautifulSoup(res.text,'html.parser')
 
 
 def send_text_message(reply_token, text):
