@@ -8,7 +8,7 @@ class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
 
-    def is_going_to_state1(self, event):
+    def is_going_to_choosefood(self, event):
         text = event.message.text
         return text.lower() == "吃什麼"
 
@@ -36,7 +36,7 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return is_food(text.lower())
 
-    def on_enter_state1(self, event):
+    def on_enter_choosefood(self, event):
         print("choose one food")
         reply_token = event.reply_token
         send_food_message(reply_token)

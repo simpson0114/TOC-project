@@ -21,8 +21,8 @@ machine = TocMachine(
         {
             "trigger": "advance",
             "source": "user",
-            "dest": "state1",
-            "conditions": "is_going_to_state1",
+            "dest": "choosefood",
+            "conditions": "is_going_to_choosefood",
         },
         {
             "trigger": "advance",
@@ -56,11 +56,11 @@ machine = TocMachine(
         },
         {
             "trigger": "advance",
-            "source": "show_foodphoto",
-            "dest": "user",
+            "source": "user",
+            "dest": "show_foodphoto",
             "conditions": "is_showing_foodphoto",
         },
-        {"trigger": "go_back", "source": ["state1", "state2", "show_foodphoto"], "dest": "user"},
+        {"trigger": "go_back", "source": ["choosefood", "state2", "show_foodphoto"], "dest": "user"},
     ],
     initial="user",
     auto_transitions=False,
