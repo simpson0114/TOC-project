@@ -24,10 +24,6 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return text.lower() == "刪食物"
 
-    def is_showing_foodphoto(self, event):
-        text = event.message.text
-        return text.lower() == "照片"
-
     def not_empty(self, event):
         text = event.message.text
         return (text.lower() != "" and not(is_food(text.lower())))
@@ -35,6 +31,10 @@ class TocMachine(GraphMachine):
     def is_food_in_list(self, event):
         text = event.message.text
         return is_food(text.lower())
+
+    def is_showing_foodphoto(self, event):
+        text = event.message.text
+        return text.lower() == "照片"
 
     def on_enter_choosefood(self, event):
         print("choose one food")
@@ -84,4 +84,4 @@ class TocMachine(GraphMachine):
         self.go_back()
 
     def on_enter_show_foodphoto(self):
-        print("Leave show_foodphoto")
+        print("Leaving show_foodphoto")
