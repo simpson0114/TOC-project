@@ -16,7 +16,7 @@ load_dotenv()
 food = ['鴨肉飯', '乾麵', '港式燒臘', '鍋燒意麵', '炒飯', '拉麵', '餛飩麵']
 
 machine = TocMachine(
-    states=["user", "state1", "state2", "add_food", "delete_food"],
+    states=["user", "state1", "state2", "add_food", "delete_food", "show_foodphoto"],
     transitions=[
         {
             "trigger": "advance",
@@ -54,7 +54,13 @@ machine = TocMachine(
             "dest": "user",
             "conditions": "is_food_in_list",
         },
-        {"trigger": "go_back", "source": ["state1", "state2"], "dest": "user"},
+        {
+            "trigger": "advance",
+            "source": "show_foodphoto",
+            "dest": "user",
+            "conditions": "is_showing_foodphoto",
+        },
+        {"trigger": "go_back", "source": ["state1", "state2", "show_foodphoto"], "dest": "user"},
     ],
     initial="user",
     auto_transitions=False,
