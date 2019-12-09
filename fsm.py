@@ -2,9 +2,8 @@ from transitions.extensions import GraphMachine
 
 from utils import send_text_message, send_image_url, send_food_message, add_food_message, send_allfood_message, delete_food_message, is_food
 
-
-photo = ['https://images.zi.org.tw/ireneslife/2018/08/23222608/1535034368-95cf834c4d3687e1347ed20f3cdb7cab.jpg',]
-
+photo = ['https://images.zi.org.tw/ireneslife/2018/08/23222608/1535034368-95cf834c4d3687e1347ed20f3cdb7cab.jpg',
+]
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
@@ -24,6 +23,10 @@ class TocMachine(GraphMachine):
     def is_deleting_food(self, event):
         text = event.message.text
         return text.lower() == "刪食物"
+
+    def is_showing_foodphoto(self, event):
+        text = event.message.text
+        return text.lower() == "照片"
 
     def not_empty(self, event):
         text = event.message.text
@@ -73,3 +76,12 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token
         delete_food_message(event.message.text.lower())
         send_text_message(reply_token, "已刪除")
+
+    def on_enter_show_foodphoto(self, event):
+        print("show food photo")
+        reply_token = event.reply_token
+        send_image_url(reply_token, photo[0])
+        self.go_back()
+
+    def on_enter_show_foodphoto(self):
+        print("Leave show_foodphoto")
