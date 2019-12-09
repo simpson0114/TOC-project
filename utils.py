@@ -3,7 +3,7 @@ import os
 from linebot import LineBotApi, WebhookParser
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 from random import choice
-from bs4 import BeautifulSoup
+'''from bs4 import BeautifulSoup'''
 import requests
 
 channel_access_token = os.getenv("LINE_CHANNEL_ACCESS_TOKEN", None)
