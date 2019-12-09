@@ -32,7 +32,7 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return is_food(text.lower())
 
-    def is_showing_foodphoto(self, event):
+    def is_showing_foodphoto(self):
         text = event.message.text
         return text.lower() == "照片"
 
