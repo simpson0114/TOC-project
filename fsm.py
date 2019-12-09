@@ -59,7 +59,6 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token
         send_text_message(reply_token, "請輸入要新增的食物")
 
-
     def on_exit_add_food(self, event):
         print("Leaving add_food")
         reply_token = event.reply_token
@@ -83,5 +82,5 @@ class TocMachine(GraphMachine):
         send_image_url(reply_token, photo[0])
         self.go_back()
 
-    def on_enter_show_foodphoto(self):
+    def on_exit_show_foodphoto(self):
         print("Leaving show_foodphoto")
