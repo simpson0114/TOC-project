@@ -16,7 +16,7 @@ load_dotenv()
 food = ['鴨肉飯', '乾麵', '港式燒臘', '鍋燒意麵', '炒飯', '拉麵', '餛飩麵']
 
 machine = TocMachine(
-    states=["user", "choosefood", "state2", "add_food", "delete_food", "show_foodphoto"],
+    states=["user", "choosefood", "all_food", "add_food", "delete_food", "show_foodphoto"],
     transitions=[
         {
             "trigger": "advance",
@@ -27,8 +27,8 @@ machine = TocMachine(
         {
             "trigger": "advance",
             "source": "user",
-            "dest": "state2",
-            "conditions": "is_going_to_state2",
+            "dest": "all_food",
+            "conditions": "is_going_to_all_food",
         },
         {
             "trigger": "advance",
@@ -60,7 +60,7 @@ machine = TocMachine(
             "dest": "show_foodphoto",
             "conditions": "is_showing_foodphoto",
         },
-        {"trigger": "go_back", "source": ["choosefood", "state2", "show_foodphoto"], "dest": "user"},
+        {"trigger": "go_back", "source": ["choosefood", "all_food", "show_foodphoto"], "dest": "user"},
     ],
     initial="user",
     auto_transitions=False,
@@ -69,7 +69,7 @@ machine = TocMachine(
 
 app = Flask(__name__, static_url_path="")
 
-
+machine.get_graph().draw("fsm.png", prog="dot", format="png")
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv("LINE_CHANNEL_SECRET", None)
 channel_access_token = os.getenv("LINE_CHANNEL_ACCESS_TOKEN", None)
@@ -150,10 +150,10 @@ def webhook_handler():
 
 @app.route("/show-fsm", methods=["GET"])
 def show_fsm():
-    machine.get_graph().draw("fsm.png", prog="dot", format="png")
+    
     return send_file("fsm.png", mimetype="image/png")
 
 
 if __name__ == "__main__":
-    port = os.environ.get("PORT", 8000)
+    port = os.environ['port']
     app.run(host="0.0.0.0", port=port, debug=True)

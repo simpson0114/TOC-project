@@ -12,7 +12,7 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return text.lower() == "吃什麼"
 
-    def is_going_to_state2(self, event):
+    def is_going_to_all_food(self, event):
         text = event.message.text
         return text.lower() == "有什麼"
 
@@ -45,13 +45,13 @@ class TocMachine(GraphMachine):
     def on_exit_choosefood(self):
         print("Leaving state1")
 
-    def on_enter_state2(self, event):
+    def on_enter_all_food(self, event):
         print("I'm entering state2")
         reply_token = event.reply_token
         send_allfood_message(reply_token)
         self.go_back()
 
-    def on_exit_state2(self):
+    def on_exit_all_food(self):
         print("Leaving state2")
         
     def on_enter_add_food(self, event):
