@@ -28,9 +28,13 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return (text.lower() != "" and not(is_food(text.lower())))
 
-    def is_food_in_list(self, event):
+    def food_is_in_list(self, event):
         text = event.message.text
         return is_food(text.lower())
+
+    def food_is_in_list(self, event):
+        text = event.message.text
+        return not is_food(text.lower())
 
     def is_showing_foodphoto(self, event):
         text = event.message.text
@@ -84,3 +88,12 @@ class TocMachine(GraphMachine):
 
     def on_exit_show_foodphoto(self):
         print("Leaving show_foodphoto")
+
+    def on_enter_no_food(self, event):
+        print("I'm entering no_food")
+        reply_token = event.reply_token
+        send_text_message(reply_token, "清單中沒有該食物")
+        self.go_back()
+
+    def on_exit_no_food(self):
+        print("Leaving no_food")
