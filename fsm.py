@@ -34,7 +34,7 @@ class TocMachine(GraphMachine):
 
     def food_isnot_in_list(self, event):
         text = event.message.text
-        return not is_food(text.lower())
+        return not(is_food(text.lower()))
 
     def is_showing_foodphoto(self, event):
         text = event.message.text
