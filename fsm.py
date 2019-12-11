@@ -76,9 +76,16 @@ class TocMachine(GraphMachine):
 
     def on_exit_delete_food(self, event):
         print("Leaving delete_food")
+
+    def on_enter_have_food(self, event):
+        print("food deleted")
         reply_token = event.reply_token
         delete_food_message(event.message.text.lower())
         send_text_message(reply_token, "已刪除")
+        self.go_back()
+
+    def on_exit_have_food(self, event):
+        print("Leaving have_food")
 
     def on_enter_show_foodphoto(self, event):
         print("show food photo")
